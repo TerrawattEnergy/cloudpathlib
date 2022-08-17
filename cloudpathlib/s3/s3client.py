@@ -99,9 +99,7 @@ class S3Client(Client):
             self.client = self.sess.client("s3", endpoint_url=endpoint_url)
 
         self.boto3_transfer_config = boto3_transfer_config
-        self.boto3_upload_extra_args: Final[Dict[str, str]] = (
-            boto3_upload_extra_args.copy() if boto3_upload_extra_args else {}
-        )
+        self.boto3_upload_extra_args: Final[Dict[str, str]] = (boto3_upload_extra_args or {}).copy()
 
         super().__init__(local_cache_dir=local_cache_dir, content_type_method=content_type_method)
 
